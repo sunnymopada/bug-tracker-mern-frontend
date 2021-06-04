@@ -1,8 +1,8 @@
-import { bugTrackerActionTypes } from './actionTypes'
+import { bugTrackerActionTypes } from './store/bugs/actionTypes'
 
-import * as actions from './actions'
+import * as actions from './store/bugs/actions'
 
-import store from './store'
+import store from './store/configureStore'
 
 const unsubscribe = store.subscribe(() => {
   console.log('Store changed', store.getState())
