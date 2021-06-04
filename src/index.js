@@ -1,6 +1,6 @@
 import store from './store/configureStore'
 
-import * as actions from './store/api'
+import { loadBugs } from './store/bugs'
 
 store.dispatch((dispatch, getState) => {
   console.log('Function called', dispatch, getState())
@@ -11,9 +11,8 @@ store.dispatch({
   payload: { message: 'An error occured' },
 })
 
-store.dispatch(
-  actions.apiCallBegan({
-    url: '/bugs',
-    onSuccess: 'bugsReceived',
-  })
-)
+store.dispatch(loadBugs())
+
+setTimeout(() => {
+  store.dispatch(loadBugs())
+}, 2000)

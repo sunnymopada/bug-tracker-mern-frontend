@@ -14,8 +14,14 @@ const api =
     if (action.type !== apiCallBegan.type) {
       return next(action)
     }
+
+    const { url, method, data, onStart, onSuccess, onError } = action.payload
+
+    if (onStart) {
+      dispatch({ type: onStart })
+    }
     next(action)
-    const { url, method, data, onSuccess, onError } = action.payload
+
     try {
       const response = await axios.request({
         baseURL: BASE_BUGS_URL,
@@ -31,10 +37,10 @@ const api =
       }
     } catch (error) {
       //General
-      dispatch(apiCallFailed(error))
+      dispatch(apiCallFailed(error.message))
       //Specific
       if (onError) {
-        dispatch({ type: onError, payload: error })
+        dispatch({ type: onError, payload: error.message })
       }
     }
   }
