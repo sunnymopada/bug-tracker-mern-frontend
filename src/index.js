@@ -23,4 +23,7 @@ store.dispatch(bugAdded({ description: 'Todo3' }))
 
 unsubscribe()
 
-console.log('unresolvedBugs', getUnresolvedBugs(store.getState()))
+const x = getUnresolvedBugs(store.getState())
+const y = getUnresolvedBugs(store.getState())
+
+console.log('unresolvedBugs', x == y)
