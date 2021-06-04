@@ -1,6 +1,4 @@
-import { bugTrackerActionTypes } from './store/bugs/actionTypes'
-
-import * as actions from './store/bugs/actions'
+import * as actions from './store/bugs'
 
 import store from './store/configureStore'
 

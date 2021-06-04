@@ -1,5 +1,39 @@
-import { bugTrackerActionTypes } from './actionTypes'
+//Action Types
+export const bugTrackerActionTypes = {
+  bugAdded: 'BUG_ADDED',
+  bugRemoved: 'BUG_REMOVED',
+  bugResolved: 'BUG_RESOLVED',
+}
 
+//Actions
+export function addBug(description) {
+  return {
+    type: bugTrackerActionTypes.bugAdded,
+    payload: {
+      description: description,
+    },
+  }
+}
+
+export function removeBug(bugId) {
+  return {
+    type: bugTrackerActionTypes.bugRemoved,
+    payload: {
+      id: bugId,
+    },
+  }
+}
+
+export function resolveBug(bugId) {
+  return {
+    type: bugTrackerActionTypes.bugResolved,
+    payload: {
+      id: bugId,
+    },
+  }
+}
+
+//Reducers
 let lastId = 0
 
 function reducer(state = [], action) {
