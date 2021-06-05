@@ -5,13 +5,17 @@ import {
   bugAssignedToUser,
   getUnresolvedBugs,
   getBugsAssignedToAUser,
-} from './store/bugs'
+  addBug,
+  assignABugUser,
+  loadBugs,
+  resolveABug,
+} from './bugs'
 
-import { projectAdded } from './store/projects'
+import { projectAdded } from './projects'
 
-import { userAdded } from './store/users'
+import { userAdded } from './users'
 
-import store from './store/configureStore'
+import store from './configureStore'
 
 const unsubscribe = store.subscribe(() => {
   console.log('Store changed', store.getState())
@@ -34,3 +38,21 @@ console.log('Get assigned bugs 1', getBugsAssignedToAUser(1)(store.getState()))
 console.log('Get assigned bugs 3', getBugsAssignedToAUser(3)(store.getState()))
 
 unsubscribe()
+
+// Thunk, APIs
+store.dispatch((dispatch, getState) => {
+  console.log('Function called', dispatch, getState())
+})
+
+store.dispatch({
+  type: 'error',
+  payload: { message: 'An error occured' },
+})
+
+store.dispatch(loadBugs())
+
+store.dispatch(addBug({ description: 'Bug5' }))
+
+store.dispatch(resolveABug(1))
+
+store.dispatch(assignABugUser(1, 1))

@@ -1,20 +1,17 @@
-import store from './store/configureStore'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-import { addBug, assignABugUser, loadBugs, resolveABug } from './store/bugs'
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-store.dispatch((dispatch, getState) => {
-  console.log('Function called', dispatch, getState())
-})
-
-store.dispatch({
-  type: 'error',
-  payload: { message: 'An error occured' },
-})
-
-store.dispatch(loadBugs())
-
-store.dispatch(addBug({ description: 'Bug5' }))
-
-store.dispatch(resolveABug(1622824513583))
-
-store.dispatch(assignABugUser(1622824513583, 1))
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
