@@ -1,6 +1,7 @@
 import { Provider } from 'react-redux'
 
 import BugsList from './components/BugsList'
+import Bugs from './components/Bugs'
 
 import store from './store/configureStore'
 

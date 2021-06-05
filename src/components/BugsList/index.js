@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { loadBugs, getUnresolvedBugs } from '../../store/bugs'
+import { loadBugs, getUnresolvedBugs, resolveABug } from '../../store/bugs'
+
+import './index.css'
 
 const BugsList = () => {
   const dispatch = useDispatch()
@@ -10,10 +12,31 @@ const BugsList = () => {
     dispatch(loadBugs())
   }, [])
 
+  const onClickResolveBug = (bugId) => {
+    dispatch(resolveABug(bugId))
+  }
+
+  const renderBug = (bug) => {
+    return (
+      <div className='bug-item' key={bug.id}>
+        <li>{bug.description}</li>
+        <button
+          disabled={bug.resolved}
+          className='resolve-bug-button'
+          onClick={() => {
+            onClickResolveBug(bug.id)
+          }}
+        >
+          Resolve
+        </button>
+      </div>
+    )
+  }
+
   return (
     <ul>
       {bugs.map((bug) => {
-        return <li key={bug.id}>{bug.description}</li>
+        return renderBug(bug)
       })}
     </ul>
   )
