@@ -1,6 +1,6 @@
 import store from './store/configureStore'
 
-import { loadBugs } from './store/bugs'
+import { addBug, loadBugs } from './store/bugs'
 
 store.dispatch((dispatch, getState) => {
   console.log('Function called', dispatch, getState())
@@ -13,6 +13,4 @@ store.dispatch({
 
 store.dispatch(loadBugs())
 
-setTimeout(() => {
-  store.dispatch(loadBugs())
-}, 2000)
+store.dispatch(addBug({ description: 'Bug5' }))

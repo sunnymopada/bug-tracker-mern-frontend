@@ -22,9 +22,9 @@ store.dispatch(projectAdded({ name: 'First project' }))
 store.dispatch(userAdded({ name: 'Sunny' }))
 store.dispatch(userAdded({ name: 'Dev' }))
 
-store.dispatch(bugAdded({ description: 'Bug1' }))
-store.dispatch(bugAdded({ description: 'Bug2' }))
-store.dispatch(bugAdded({ description: 'Bug3' }))
+store.dispatch(bugAdded({ id: 1, description: 'Bug1' }))
+store.dispatch(bugAdded({ id: 2, description: 'Bug2' }))
+store.dispatch(bugAdded({ id: 3, description: 'Bug3' }))
 
 store.dispatch(bugAssignedToUser({ bugId: 2, userId: 1 }))
 

@@ -5,8 +5,6 @@ import { createSelector } from 'reselect'
 
 import { apiCallBegan } from './api'
 
-let lastId = 0
-
 const slice = createSlice({
   name: 'bugs',
   initialState: {
@@ -27,12 +25,7 @@ const slice = createSlice({
       bugs.loading = false
     },
     bugAdded: (bugs, action) => {
-      bugs.list.push({
-        id: ++lastId,
-        resolved: false,
-        description: action.payload.description,
-        userId: null,
-      })
+      bugs.list.push(action.payload)
     },
     bugResolved: (bugs, action) => {
       const bugIndex = bugs.list.findIndex(
@@ -81,6 +74,9 @@ export const loadBugs = () => (dispatch, getState) => {
     })
   )
 }
+
+export const addBug = (bug) =>
+  apiCallBegan({ url, method: 'post', data: bug, onSuccess: bugAdded.type })
 
 //Memoization
 export const getUnresolvedBugs = createSelector(
