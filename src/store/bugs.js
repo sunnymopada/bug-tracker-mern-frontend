@@ -37,7 +37,8 @@ const slice = createSlice({
       bugs.list.filter((bug) => bug.id !== action.pay)
     },
     bugAssignedToUser: (bugs, action) => {
-      const { bugId, userId } = action.payload
+      console.log('bugAssignedToUser', action.payload)
+      const { id: bugId, userId } = action.payload
       const bugIndex = bugs.list.findIndex((bug) => bug.id === bugId)
       bugs.list[bugIndex].userId = userId
     },
@@ -77,6 +78,22 @@ export const loadBugs = () => (dispatch, getState) => {
 
 export const addBug = (bug) =>
   apiCallBegan({ url, method: 'post', data: bug, onSuccess: bugAdded.type })
+
+export const assignABugUser = (id, userId) =>
+  apiCallBegan({
+    url: `${url}/${id}`,
+    method: 'patch',
+    data: { userId },
+    onSuccess: bugAssignedToUser.type,
+  })
+
+export const resolveABug = (id) =>
+  apiCallBegan({
+    url: `${url}/${id}`,
+    method: 'patch',
+    data: { resolved: true },
+    onSuccess: bugResolved.type,
+  })
 
 //Memoization
 export const getUnresolvedBugs = createSelector(

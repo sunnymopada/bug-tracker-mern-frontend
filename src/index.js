@@ -1,6 +1,6 @@
 import store from './store/configureStore'
 
-import { addBug, loadBugs } from './store/bugs'
+import { addBug, assignABugUser, loadBugs, resolveABug } from './store/bugs'
 
 store.dispatch((dispatch, getState) => {
   console.log('Function called', dispatch, getState())
@@ -14,3 +14,7 @@ store.dispatch({
 store.dispatch(loadBugs())
 
 store.dispatch(addBug({ description: 'Bug5' }))
+
+store.dispatch(resolveABug(1622824513583))
+
+store.dispatch(assignABugUser(1622824513583, 1))
