@@ -5,7 +5,7 @@ const errorLogger =
     if (action.type === 'error') {
       console.log(action.payload.message)
     } else {
-      next(action)
+      return next(action)
     }
   }
 
