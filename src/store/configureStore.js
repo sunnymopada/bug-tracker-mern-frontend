@@ -7,8 +7,8 @@ import api from './middleware/api'
 import reducer from './reducer'
 
 const store = configureStore({
-  reducer,
-  middleware: [...getDefaultMiddleware(), errorLogger, api],
+   reducer,
+   middleware: [...getDefaultMiddleware(), errorLogger, api]
 })
 
 export default store
