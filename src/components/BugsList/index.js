@@ -1,45 +1,43 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { Component } from 'react'
 
-import { loadBugs, getUnresolvedBugs, resolveABug } from '../../store/bugs'
+import BugItem from '../BugItem'
 
-import './index.css'
+import { DashboardTable } from './styledComponents'
 
-const BugsList = () => {
-   const dispatch = useDispatch()
-   const bugs = useSelector(getUnresolvedBugs)
-   useEffect(() => {
-      dispatch(loadBugs())
-   }, [])
-
-   const onClickResolveBug = bugId => {
-      dispatch(resolveABug(bugId))
+class BugsList extends Component {
+   renderBugs = () => {
+      const { bugs, onResolveBug, onAssignABugUser } = this.props
+      return bugs.map(bug => {
+         return (
+            <BugItem
+               key={bug.id}
+               bug={bug}
+               onResolveBug={onResolveBug}
+               onAssignABugUser={onAssignABugUser}
+            />
+         )
+      })
    }
 
-   const renderBug = bug => {
+   renderTableHeading = () => {
       return (
-         <div className='bug-item' key={bug.id}>
-            <li>{bug.description}</li>
-            <button
-               disabled={bug.resolved}
-               className='resolve-bug-button'
-               onClick={() => {
-                  onClickResolveBug(bug.id)
-               }}
-            >
-               Resolve
-            </button>
-         </div>
+         <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Assignee</th>
+            <th>Status</th>
+         </tr>
       )
    }
 
-   return (
-      <ul>
-         {bugs.map(bug => {
-            return renderBug(bug)
-         })}
-      </ul>
-   )
+   render() {
+      return (
+         <DashboardTable responsive striped bordered hover variant='dark'>
+            <thead>{this.renderTableHeading()}</thead>
+            <tbody>{this.renderBugs()}</tbody>
+         </DashboardTable>
+      )
+   }
 }
 
 export default BugsList

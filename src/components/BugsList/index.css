@@ -1,9 +1,0 @@
-.bug-item{
-    display:flex;
-    flex-direction:row;
-    margin:5px;
-}
-
-.resolve-bug-button{
-    margin-left:5px
-}

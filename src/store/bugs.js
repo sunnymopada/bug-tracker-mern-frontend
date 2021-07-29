@@ -37,7 +37,6 @@ const slice = createSlice({
          bugs.list.filter(bug => bug.id !== action.pay)
       },
       bugAssignedToUser: (bugs, action) => {
-         console.log('bugAssignedToUser', action.payload)
          const { id: bugId, userId } = action.payload
          const bugIndex = bugs.list.findIndex(bug => bug.id === bugId)
          bugs.list[bugIndex].userId = userId

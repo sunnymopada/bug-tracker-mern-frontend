@@ -1,14 +1,11 @@
 //Thunk/Function
 
-const logger =
-  ({ dispatch, getState }) =>
-  (next) =>
-  (action) => {
-    if (typeof action === 'function') {
+const thunk = ({ dispatch, getState }) => next => action => {
+   if (typeof action === 'function') {
       action(dispatch, getState)
-    } else {
+   } else {
       next(action)
-    }
-  }
+   }
+}
 
-export default logger
+export default thunk

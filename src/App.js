@@ -1,35 +1,55 @@
+import { Component } from 'react'
 import { Provider } from 'react-redux'
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Switch, BrowserRouter as Router } from 'react-router-dom'
 
 import store from './store/configureStore'
+
 import LoginRoute from './routes/LoginRoute'
-import HomeRoute from './routes/HomeRoute'
+import DashboardRoute from './routes/DashboardRoute'
+import RegisterRoute from './routes/RegisterRoute'
+
+import {
+   AuthCheckRoute,
+   ProtectedRoute
+} from './components/RouteUtilComponents'
 import Navbar from './components/Navbar'
 
-function App() {
-   return (
-      <div className='App'>
+import {
+   DASHBOARD_ROUTE_PATH,
+   HOME_ROUTE_PATH,
+   LOGIN_ROUTE_PATH,
+   REGISTER_ROUTE_PATH
+} from './constants/NavigationConstants'
+
+class App extends Component {
+   renderRoutes = () => {
+      return (
+         <Switch>
+            <AuthCheckRoute path={LOGIN_ROUTE_PATH}>
+               <LoginRoute />
+            </AuthCheckRoute>
+            <AuthCheckRoute path={REGISTER_ROUTE_PATH}>
+               <RegisterRoute />
+            </AuthCheckRoute>
+            <ProtectedRoute path={DASHBOARD_ROUTE_PATH}>
+               <DashboardRoute />
+            </ProtectedRoute>
+            <ProtectedRoute path={HOME_ROUTE_PATH}>
+               <DashboardRoute />
+            </ProtectedRoute>
+         </Switch>
+      )
+   }
+   render() {
+      return (
          <Provider store={store}>
             <Router>
                <Navbar />
-               <Switch>
-                  <Route path='/login'>
-                     <LoginRoute />
-                  </Route>
-                  <Route path='/register'>
-                     <LoginRoute />
-                  </Route>
-                  <Route path='/dashboard'>
-                     <HomeRoute />
-                  </Route>
-                  <Route path='/'>
-                     <HomeRoute />
-                  </Route>
-               </Switch>
+               {this.renderRoutes()}
             </Router>
          </Provider>
-      </div>
-   )
+      )
+   }
 }
 
 export default App
