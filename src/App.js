@@ -43,7 +43,7 @@ class App extends Component {
    render() {
       return (
          <Provider store={store}>
-            <Router>
+            <Router basename='/bug-tracker-mern-stack'>
                <Navbar />
                {this.renderRoutes()}
             </Router>

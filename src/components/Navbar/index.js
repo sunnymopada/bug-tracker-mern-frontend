@@ -5,6 +5,12 @@ import { Navbar, Container, Nav } from 'react-bootstrap'
 
 import { logoutUser } from '../../store/users'
 
+import {
+   DASHBOARD_ROUTE_PATH,
+   LOGIN_ROUTE_PATH,
+   REGISTER_ROUTE_PATH
+} from '../../constants/NavigationConstants'
+
 import { NavBarContainer, NavBarBrand, NavLogo } from './styledComponents'
 
 class Header extends Component {
@@ -24,10 +30,10 @@ class Header extends Component {
       } else {
          return (
             <React.Fragment>
-               <Nav.Link as={Link} to='/register'>
+               <Nav.Link as={Link} to={REGISTER_ROUTE_PATH}>
                   Register
                </Nav.Link>
-               <Nav.Link as={Link} to='/login'>
+               <Nav.Link as={Link} to={LOGIN_ROUTE_PATH}>
                   Login
                </Nav.Link>
             </React.Fragment>
@@ -41,7 +47,9 @@ class Header extends Component {
             <Container>
                <NavBarBrand>
                   <NavLogo
-                     src={'/images/logo.png'}
+                     src={
+                        'https://zohowebstatic.com/sites/default/files/ogimage/bugtracker-logo.png'
+                     }
                      width='35'
                      height='35'
                      alt='App Logo'
@@ -51,7 +59,7 @@ class Header extends Component {
                <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                <Navbar.Collapse id='responsive-navbar-nav'>
                   <Nav className='ms-auto'>
-                     <Nav.Link as={Link} to='/dashboard'>
+                     <Nav.Link as={Link} to={DASHBOARD_ROUTE_PATH}>
                         Dashboard
                      </Nav.Link>
                      {this.renderAuthItems()}
