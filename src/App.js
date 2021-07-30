@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Provider } from 'react-redux'
-import { Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Switch, HashRouter as Router } from 'react-router-dom'
 
 import store from './store/configureStore'
 
@@ -43,7 +43,7 @@ class App extends Component {
    render() {
       return (
          <Provider store={store}>
-            <Router basename='/bug-tracker-mern-stack'>
+            <Router>
                <Navbar />
                {this.renderRoutes()}
             </Router>
