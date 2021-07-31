@@ -3,6 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Bug Tracker
 
 -  The project is implemented while learning Redux, Redux Toolkit, React Hooks, Redux Form, Bootstrap, Node JS, Express JS, SQL
+-  Did not add use cases like loading, failure cases yet
 
 ## Folder structure
 

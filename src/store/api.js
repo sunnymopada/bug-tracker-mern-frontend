@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit'
 
-export const BASE_BUGS_URL = 'http://localhost:9001/api'
+export const BASE_BUGS_URL = 'https://sunny-bug-tracker-mern.herokuapp.com/api'
 
 export const apiCallBegan = createAction('api/callBegan')
 
