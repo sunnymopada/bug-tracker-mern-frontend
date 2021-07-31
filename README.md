@@ -7,5 +7,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Folder structure
 
--  src folder will have frontend code
--  server folder will have backend code
+-  src folder will have frontend code of different things
+-  store will have redux store
